@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+.home-text{
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.55em;
+    color: #2c3338;
+}
+.home h6{
+  margin-top: 25px !important;
+}
+.home button{
+  letter-spacing: 3px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-container{
+  background-image: url('./components/graph.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home img{
+  height: 80vh;
+  width: 90%;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.home hr{
+  margin-top: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.signup:hover{
+  box-shadow: 3px -3px 10px rgb(91, 104, 91) ,-3px 3px 50px rgb(159, 189, 159) ;
+  transition: all ease 0.5s;
+}
+
+.login{
+  padding: none;
+  margin:none;
+  height: 91vh !important;
+  overflow-y: hidden;
+  background-image: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.loginform{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.mainsignup{
+  padding: none;
+  margin:none;
+  height: 91vh !important;
+  overflow-y: hidden;
+  background-image: url('https://images.pexels.com/photos/5935791/pexels-photo-5935791.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  background-position: center;
+  height: 91vh;
+
+}
+.signup{
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 20px;
+  border: 2px solid white;
+}
+@media only screen and (min-width:768px){
+  .midlastmodify{
+    display: none;}
+
+}
+@media only screen and (max-width: 768px) {
+  .signup {
+    top: 60%;
+  }
+  .home img{
+    height: 100%;
+    width: 90%;
+    filter: blur(2px);
+  -webkit-filter: blur(2px);
+  }
+  i{
+    top: 14px;
+    gap: 10px;
+  }
+  .edit{
+    right: 15% !important;
+  }
+  .lastmodify{
+    display: none;
+  }
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.mainNoteItem{
+  padding: 0px;
+  margin:0px;
+  background-color: rgb(228, 236, 234);
+  height: 100vh;
 }
