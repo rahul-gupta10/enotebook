@@ -10,7 +10,7 @@ router.post(
   "/insertnote",
   fetchuser,
   [
-    body("title", "Title length must be atleast 10 charecter").isLength({
+    body("title", "Title length must be atleast 5 charecter").isLength({
       min: 5,
     }), //validation of the fields
     body(
@@ -37,7 +37,7 @@ router.post(
       }
       
     }else {
-      res.send({ errors: result.array() }); //if validation failed then print error
+      res.status(400).json({errors: result.array()}); //if validation failed then print error
     }
   }
 );

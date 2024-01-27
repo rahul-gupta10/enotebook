@@ -21,7 +21,7 @@ function App() {
   }
   return (
     <>
-    <NoteState>
+    <NoteState showAlert={showAlert}>
       <Router>
         <Navbar/>
         <div style={{height:"20px",backgroundColor:"rgb(228, 236, 234)"}}>
