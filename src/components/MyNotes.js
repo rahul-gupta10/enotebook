@@ -8,9 +8,11 @@ function MyNotes(props) {
   const context = useContext(NoteContext)
   const {notes, addNote,fetchNote,upDateNote} = context;
   const[note,setNote,] = useState({title:"",description:""})
+  const[data,setData,] = useState({title:"",description:""})
   useEffect(() => {
     fetchNote();
-  });
+    // eslint-disable-next-line
+  },[])
 
   const addNoteHandle=(e)=>{
     e.preventDefault();
@@ -29,6 +31,7 @@ function MyNotes(props) {
 
   const onChangeHandler=(e)=>{
     setNote({...note,[e.target.name]:e.target.value})
+    setData({...data,[e.target.name]:e.target.value})
 
   }
   return (
@@ -37,13 +40,13 @@ function MyNotes(props) {
         <div className="container">
           <div style={{ display: "hidden" }}>.</div>
           <div className="d-grid gap-2 col-10 col-sm-2 mx-auto my-3">
-            <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addnotes" onClick={()=>{setWork("Add");}}>Add Notes +</button>
+            <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addnotes" onClick={()=>{setWork("Add");setData({title:"",description:""})}}>Add Notes +</button>
           </div>
           <div className="accordion my-3" id="accordionExample">
           {
             notes.map((element)=>{
               return <NoteItem key={element._id} showAlert={props.showAlert} title={element.title} description={element.description}
-               collapseid={"element"+element._id} id={element._id} setWork={setWork} setId={setId}/>
+               collapseid={"element"+element._id} id={element._id} setData={setData} setWork={setWork} setId={setId}/>
               
             })
           }
@@ -64,11 +67,11 @@ function MyNotes(props) {
                 <form>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Title</label>
-                    <input autoComplete="off" type="text" className="form-control" name="title" id="title" aria-describedby="emailHelp" onChange={onChangeHandler}/>
+                    <input autoComplete="off" type="text" className="form-control" value={data.title} name="title" id="title" aria-describedby="emailHelp" onChange={onChangeHandler}/>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
-                    <textarea rows={10} autoComplete="off" type="text" className="form-control" name="description" id="description" onChange={onChangeHandler}/>
+                    <textarea rows={10} autoComplete="off" type="text" value={data.description} className="form-control" name="description" id="description" onChange={onChangeHandler}/>
                     <div id="passwordhelp" className="form-text"></div>
                   </div>
                   {

@@ -8,6 +8,10 @@ function NoteItem(props) {
   const updateHandler=()=>{
     props.setWork("Update");
     props.setId(props.id)
+    props.setData({
+      title:props.title,
+      description: props.description
+    })
 
   }
   return (

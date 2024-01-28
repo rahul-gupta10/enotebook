@@ -29,6 +29,7 @@ const NoteState = (props)=>{
          res.json()
         
         if(res.status===200){
+            fetchNote();
             props.showAlert("Note Added");
         }
         else{
@@ -46,6 +47,7 @@ const NoteState = (props)=>{
         },
         });
         if(res.status===200){
+            fetchNote();
             props.showAlert("Note Deleted");
         }
         else{
@@ -66,16 +68,10 @@ const NoteState = (props)=>{
         });
          res.json()
         if(res.status ===200){
+            fetchNote();
             props.showAlert("Note updated..")
         }
-        for (let index = 0; index < notes.length; index++) {
-            const element = notes[index];
-            if(element.id===id){
-                element.title=title;
-                element.description=description
-            }
-            
-        }
+        
         
     }
     
