@@ -1,8 +1,10 @@
 import React ,{useContext, useEffect, useState}from 'react'
 import NoteItem from './NoteItem'
 import NoteContext from '../contex/notes/NoteContext'
+import { useNavigate } from 'react-router-dom'
 
 function MyNotes(props) {
+  let history = useNavigate();
   const [work,setWork] = useState("Add")
   const [id,setId] = useState()
   const context = useContext(NoteContext)
@@ -10,7 +12,13 @@ function MyNotes(props) {
   const[note,setNote,] = useState({title:"",description:""})
   const[data,setData,] = useState({title:"",description:""})
   useEffect(() => {
-    fetchNote();
+    if(!sessionStorage.getItem("authtoken")){
+      props.showAlert("Please login first")
+      history("/login")
+    }
+    else{
+      fetchNote();
+    }
     // eslint-disable-next-line
   },[])
 
@@ -45,7 +53,7 @@ function MyNotes(props) {
           <div className="accordion my-3" id="accordionExample">
           {
             notes.map((element)=>{
-              return <NoteItem key={element._id} showAlert={props.showAlert} title={element.title} description={element.description}
+              return <NoteItem key={element._id} lastmodify={element.lastmodified} showAlert={props.showAlert} title={element.title} description={element.description}
                collapseid={"element"+element._id} id={element._id} setData={setData} setWork={setWork} setId={setId}/>
               
             })

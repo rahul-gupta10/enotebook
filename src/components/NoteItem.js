@@ -23,13 +23,12 @@ function NoteItem(props) {
             <i className="fa-solid fa-trash trash" style={{ position: "absolute", right: "1%",top:"14px" }} onClick={()=>{deleteNote(props.id)}}></i>
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#${props.collapseid}`} aria-expanded="true" aria-controls={props.collapseid}>
               <strong>Title:- {props.title}</strong>
-              <span className ="lastmodify"style={{ fontSize: "12px", position: "absolute", right: "50px" }}>{"Last modified:- " + props.modifydate}</span>
+              <span className ="lastmodify"style={{ fontSize: "12px", position: "absolute", right: "50px" }}>{"Last modified:- " + props.lastmodify.slice(0,10)+ " "+props.lastmodify.slice(11,16)+" IST"}</span>
             </button>
           </div>
         </h2>
         <div id={props.collapseid} className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div className="accordion-body">
-          <span className ="midlastmodify"style={{ fontSize: "12px"}}>{"Last modified:- " + props.modifydate}</span><br/>
             {props.description}
           </div>
         </div>

@@ -4,12 +4,25 @@ import { useState } from "react";
 const NoteState = (props)=>{   
     const [ notes , setNote] = useState([]);
 
+    const fetchUser = async (token) =>{
+        const res = await fetch(`http://localhost:5000/api/auth/fetchuser`,{
+        method:'POST',
+        headers:{
+            "Content-Type":'application/json',
+            "auth-token": token
+        },  
+        });
+        const data = await res.json()
+        sessionStorage.setItem("username" ,data.name)
+        
+    }
+
     const fetchNote=async()=>{
         const res = await fetch(`http://localhost:5000/api/notes/fetchnotes`,{
         method:'GET',
         headers:{
             "Content-Type":'application/json',
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMTQyMjFiNTBjODU2NjEzYmI5Y2VjIn0sImlhdCI6MTcwNjE2NTM3MX0.OVeS5KJf17iV29LA3aku8CeNeWRyI5OcJKG1hn32t1M"
+            "auth-token":sessionStorage.getItem("authtoken")
         },  
         });
         const data = await res.json()
@@ -22,11 +35,11 @@ const NoteState = (props)=>{
         method:'POST',
         headers:{
             "Content-Type":'application/json',
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMTQyMjFiNTBjODU2NjEzYmI5Y2VjIn0sImlhdCI6MTcwNjE2NTM3MX0.OVeS5KJf17iV29LA3aku8CeNeWRyI5OcJKG1hn32t1M"
+            "auth-token":sessionStorage.getItem("authtoken")
         },
         body:JSON.stringify({title,description})
         });
-         res.json()
+         await res.json()
         
         if(res.status===200){
             fetchNote();
@@ -43,7 +56,7 @@ const NoteState = (props)=>{
         method:'PUT',
         headers:{
             "Content-Type":'application/json',
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMTQyMjFiNTBjODU2NjEzYmI5Y2VjIn0sImlhdCI6MTcwNjE2NTM3MX0.OVeS5KJf17iV29LA3aku8CeNeWRyI5OcJKG1hn32t1M"
+            "auth-token":sessionStorage.getItem("authtoken")
         },
         });
         if(res.status===200){
@@ -62,7 +75,7 @@ const NoteState = (props)=>{
         method:'PUT',
         headers:{
             "Content-Type":'application/json',
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViMTQyMjFiNTBjODU2NjEzYmI5Y2VjIn0sImlhdCI6MTcwNjE2NTM3MX0.OVeS5KJf17iV29LA3aku8CeNeWRyI5OcJKG1hn32t1M"
+            "auth-token":sessionStorage.getItem("authtoken")
         },
         body:JSON.stringify({title,description})
         });
@@ -76,7 +89,7 @@ const NoteState = (props)=>{
     }
     
     return(
-    <noteContext.Provider value={{notes,fetchNote, addNote, deleteNote, upDateNote }}>
+    <noteContext.Provider value={{notes,fetchNote, addNote, deleteNote, upDateNote,fetchUser }}>
         {props.children}
     </noteContext.Provider>
 )}

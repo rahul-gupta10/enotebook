@@ -15,7 +15,11 @@ const notesSchema = new Schema({
     },
     date:{
         type : Date,
-        default : Date.now
+        default : Date.now()
+    },
+    lastmodified:{
+        type : Date,
+        default : Date.now()
     }
 })
 const notes = mongoose.model("notes",notesSchema);

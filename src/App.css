@@ -83,6 +83,9 @@
 
 }
 @media only screen and (max-width: 768px) {
+  .line{
+    display:none;
+  }
   .signup {
     top: 60%;
   }

@@ -28,8 +28,10 @@ router.post(
           user: req.user.id,
           title: req.body.title,
           description: req.body.description,
+          date:req.body.date,
+          lastmodified:req.body.date,
         })
-          .then((Users) => res.json(Users)) //if inserted then print the data
+          .then((Users) => res.status(200).json(Users)) //if inserted then print the data
           .catch((err) => res.json({ message: err.message })); //if failed show error
         
       } catch (error) {
@@ -59,8 +61,8 @@ router.put('/updatenote/:id',fetchuser,[
   try {
       const {title,description} =req.body;
       const newnote = {};
-      if(title){newnote.title=title}
-      if(description){newnote.description=description}
+      if(title){newnote.title=title,newnote.lastmodified= new Date()}
+      if(description){newnote.description=description,newnote.lastmodified= new Date().toLocaleDateString()}
       const note =  await Notes.findById(req.params.id);
       if(!note){return res.status(404).send("Notes not found")};
       if(note.user !== req.user.id){return res.status(401).send("Action not allowed")}
